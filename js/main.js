@@ -1,13 +1,14 @@
-const CHECKING_LENGHT = (line, maxlenght) => {
-  if (line < 0 || maxlenght < 0) {
-    return NaN;
-  } else {
-    return line <= maxlenght;
-  }
-}
+const checkStringLength = (string, maxLength) => string.length <= maxLength;
+checkStringLength('kekstagram', 2);
 
-console.log(CHECKING_LENGHT(-1, 2));
-console.log(CHECKING_LENGHT(1, -2));
-console.log(CHECKING_LENGHT(2, 2));
-console.log(CHECKING_LENGHT(1, 2));
-console.log(CHECKING_LENGHT(2, 1));
+const getRandomInteger = (min, max) => {
+  if (min < 0 || max < 0 || min === max) {
+    return NaN;
+  }
+
+  if (min > max) {
+    [min, max] = [max, min];
+  }
+};
+
+getRandomInteger(1, 2);
