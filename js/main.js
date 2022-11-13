@@ -1,3 +1,5 @@
-import { arrayPhotos } from './data.js';
+import {drawPhotos} from './draw-photos.js';
+drawPhotos();
+// import './overlay.js';
 
-arrayPhotos();
+// import './form.js';
