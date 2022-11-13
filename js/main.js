@@ -1,5 +1,7 @@
 import {drawPhotos} from './draw-photos.js';
 drawPhotos();
-// import './overlay.js';
-
-// import './form.js';
+import { onCloseButtonClick, onOpenButtonClick, onPhotoWindowEscKeydown } from './user-modal.js';
+onCloseButtonClick();
+onOpenButtonClick();
+onPhotoWindowEscKeydown();
+import './form- validation.js';
