@@ -1,7 +1,9 @@
-import {drawPhotos} from './draw-photos.js';
+import { drawPhotos } from './draw-photos.js';
+import { addFormAction } from './form.js';
+import { changeScale } from './photo-scale.js';
+import { onChangeEffect } from './photo-effects.js';
+
 drawPhotos();
-import { onCloseButtonClick, onOpenButtonClick, onPhotoWindowEscKeydown } from './user-modal.js';
-onCloseButtonClick();
-onOpenButtonClick();
-onPhotoWindowEscKeydown();
-import './form- validation.js';
+addFormAction();
+changeScale();
+onChangeEffect();
