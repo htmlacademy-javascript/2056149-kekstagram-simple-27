@@ -1,4 +1,4 @@
-const currentImage = document.querySelector('.img-upload__preview').querySelector('img');
+const currentImage = document.querySelector('.img-upload__preview img');
 const effects = document.querySelectorAll('.effects__radio');
 const effectsList = document.querySelector('.effects');
 

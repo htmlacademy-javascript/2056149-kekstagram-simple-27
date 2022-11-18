@@ -1,3 +1,5 @@
+import { changeScale, resetScale } from './photo-scale.js';
+
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const uploadForm = document.querySelector('.img-upload__form');
@@ -21,6 +23,7 @@ const closeModal = () => {
   uploadForm.reset();
   pristine.reset();
   removeListeners();
+  resetScale();
 };
 
 const onUploadFormCloseClick = (evt) => {
@@ -55,6 +58,7 @@ const onUploadFormSubmit = (evt) => {
 };
 
 const addFormAction = () => {
+  changeScale();
   uploadFile.addEventListener('change', onUploadFileChange);
   uploadForm.addEventListener('submit', onUploadFormSubmit);
 };
