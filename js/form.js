@@ -1,9 +1,23 @@
 import { changeScale, resetScale } from './photo-scale.js';
+import { sendData } from './api.js';
+import { errorAlert, successAlert } from './form-submit-message.js';
+import { resetEffects } from './effect-slider.js';
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
 const uploadForm = document.querySelector('.img-upload__form');
 const uploadFormClose = document.querySelector('.img-upload__cancel');
+const submitButton = document.querySelector('.img-upload__submit');
+
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Публикация в Kekstagram...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Опубликовать';
+};
 
 const pristine = new Pristine(uploadForm, {
   classTo: 'img-upload__text',
@@ -24,6 +38,7 @@ const closeModal = () => {
   pristine.reset();
   removeListeners();
   resetScale();
+  resetEffects();
 };
 
 const onUploadFormCloseClick = (evt) => {
@@ -54,7 +69,20 @@ const onUploadFileChange = () => {
 
 const onUploadFormSubmit = (evt) => {
   evt.preventDefault();
-  if (pristine.validate()) { }
+  if (pristine.validate()) {
+    blockSubmitButton();
+    sendData(
+      () => {
+        successAlert();
+        unblockSubmitButton();
+      },
+      () => {
+        errorAlert();
+        unblockSubmitButton();
+      },
+      new FormData(evt.target),
+    );
+  }
 };
 
 const addFormAction = () => {

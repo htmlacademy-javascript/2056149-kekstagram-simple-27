@@ -1,8 +1,5 @@
-import { createPhotos } from './data.js';
-
 const pictures = document.querySelector('.pictures');
 const picture = document.querySelector('#picture').content.querySelector('.picture');
-const similarPictures = createPhotos();
 
 const createPhoto = ({url, likes, comments}) => {
   const pictureElement = picture.cloneNode(true);
@@ -13,7 +10,7 @@ const createPhoto = ({url, likes, comments}) => {
   return pictureElement;
 };
 
-const drawPhotos = () => {
+const drawPhotos = (similarPictures) => {
   similarPictures.forEach((item) => {
     const photo = createPhoto(item);
     pictures.append(photo);
