@@ -1,13 +1,5 @@
 import { addFormAction } from './form.js';
-import { drawPhotos } from './draw-photos.js';
-import { getData } from './api.js';
-import { addSubmitMessage } from './form-submit-message.js';
-import { addEffects } from './effect-slider.js';
+import { loadImages } from './load-images.js';
 
-getData((photos) => {
-  drawPhotos(photos);
-});
-
+loadImages();
 addFormAction();
-addSubmitMessage();
-addEffects();

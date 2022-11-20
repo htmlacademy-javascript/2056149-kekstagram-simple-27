@@ -1,7 +1,11 @@
 import { changeScale, resetScale } from './photo-scale.js';
 import { sendData } from './api.js';
-import { errorAlert, successAlert } from './form-submit-message.js';
+import { renderPostErrorMessage } from './error-message.js';
+import { renderSuccessMessage } from './success-message.js';
 import { resetEffects } from './effect-slider.js';
+import { addEffects } from './effect-slider.js';
+
+const POST_URL = 'https://27.javascript.pages.academy/kekstagram-simple';
 
 const uploadOverlay = document.querySelector('.img-upload__overlay');
 const uploadFile = document.querySelector('#upload-file');
@@ -67,26 +71,29 @@ const onUploadFileChange = () => {
   openModal();
 };
 
+const errorCallback = () => {
+  renderPostErrorMessage();
+  unblockSubmitButton();
+};
+
+const successCallback = () => {
+  renderSuccessMessage();
+  unblockSubmitButton();
+  closeModal();
+};
+
 const onUploadFormSubmit = (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
     blockSubmitButton();
-    sendData(
-      () => {
-        successAlert();
-        unblockSubmitButton();
-      },
-      () => {
-        errorAlert();
-        unblockSubmitButton();
-      },
-      new FormData(evt.target),
+    sendData(POST_URL, successCallback, errorCallback, new FormData(evt.target),
     );
   }
 };
 
 const addFormAction = () => {
   changeScale();
+  addEffects();
   uploadFile.addEventListener('change', onUploadFileChange);
   uploadForm.addEventListener('submit', onUploadFormSubmit);
 };
