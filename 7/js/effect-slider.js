@@ -59,11 +59,6 @@ const resetEffects = () => {
   updateSlider();
 };
 
-const addEffects = () => {
-  effects.addEventListener('change', onFormChange);
-  sliderElement.noUiSlider.on('update', onSliderUpdate);
-};
-
 const createSlider = () => {
   noUiSlider.create(sliderElement, {
     range: {
@@ -77,6 +72,10 @@ const createSlider = () => {
   resetEffects();
 };
 
-createSlider();
+const addEffects = () => {
+  createSlider();
+  effects.addEventListener('change', onFormChange);
+  sliderElement.noUiSlider.on('update', onSliderUpdate);
+};
 
-export { resetEffects, addEffects};
+export { resetEffects, addEffects };

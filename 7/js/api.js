@@ -1,16 +1,15 @@
-import { errorAlert, successAlert } from './form-submit-message.js';
-
-const getData = (onSuccess) => {
-  fetch('https://27.javascript.pages.academy/kekstagram-simple/data')
+const getData = (url, onSuccess, onFail) => {
+  fetch(url)
     .then((response) => response.json())
-    .then((photos) => {
-      onSuccess(photos);
+    .then((data) => onSuccess(data))
+    .catch(() => {
+      onFail();
     });
 };
 
-const sendData = (onSuccess, onFail, body) => {
+const sendData = (url, onSuccess, onFail, body) => {
   fetch(
-    'https://27.javascript.pages.academy/kekstagram-simple',
+    url,
     {
       method: 'POST',
       body,
@@ -18,15 +17,14 @@ const sendData = (onSuccess, onFail, body) => {
   )
     .then((response) => {
       if (response.ok) {
-        onSuccess(successAlert);
+        onSuccess();
       } else {
-        onFail(errorAlert);
+        onFail();
       }
     })
     .catch(() => {
-      onFail(errorAlert);
+      onFail();
     });
 };
 
 export { getData, sendData };
-
